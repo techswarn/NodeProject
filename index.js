@@ -8,7 +8,7 @@ let DB = "mongodb+srv://doadmin:<password>@app-db01-fe45a622.mongo.ondigitalocea
 dotenv.config({path: './config.env'})
 console.log(process.env.NODE_ENV)
 
-if(process.env.NODE_ENV = "production") {
+if(process.env.NODE_ENV === "production") {
   console.log("is production")
   console.log(process.env.DATABASE_PASSWORD) 
   console.log(process.env.DB_STRING)
