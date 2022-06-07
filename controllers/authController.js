@@ -25,3 +25,7 @@ exports.signup = catchAsync(async(req, res, next) => {
         message: 'User created'
       });
 })
+
+exports.hello = catchAsync(async(req, res, next) => {
+    res.status(201).send('<p>some html</p>')
+})
