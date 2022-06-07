@@ -3,23 +3,28 @@ const mongoose = require('mongoose');
 const constants = require('./utils/constants')
 const dotenv = require('dotenv')
 
+let DB = "mongodb+srv://doadmin:<password>@app-db01-fe45a622.mongo.ondigitalocean.com/story?replicaSet=app-db01&tls=true&authSource=admin"
 
 dotenv.config({path: './config.env'})
 console.log(process.env.NODE_ENV)
 
 if(process.env.NODE_ENV = "production") {
   console.log("is production")
-  console.log(URL)
-}
+  console.log(process.env.DB_PASSWORD)
+  
+  DB = process.env.DATABASE.replace(
+    '<password>',
+    process.env.DB_PASSWORD
+  )
+  console.log(DB)
 
-console.log(process.env.URL)
-
-
-const DB = process.env.DATABASE.replace(
+} else {
+  DB = process.env.DATABASE.replace(
     '<password>',
     process.env.DATABASE_PASSWORD
   );
-console.log(DB)
+  console.log(DB)
+}
 
 mongoose
   .connect(DB, {
