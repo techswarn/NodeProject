@@ -1,5 +1,5 @@
 const express = require("express");
-const morgan = require('morgan')
+//const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const swaggerUi = require('swagger-ui-express')
@@ -17,7 +17,7 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 //Middlewares
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+//app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 //Import all routes
 const userRouter = require('./routes/userRouter')
