@@ -8,6 +8,7 @@ console.log(process.env.NODE_ENV)
 console.log(process.env.DATABASE)
 if(process.env.NODE_ENV = "production") {
   console.log("is production")
+  console.log(URL)
 }
 const DB = process.env.DATABASE.replace(
     '<password>',
