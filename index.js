@@ -11,8 +11,9 @@ console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV = "production") {
   console.log("is production")
   console.log(process.env.DB_PASSWORD)
+  console.log(process.env.DB_STRING)
   
-  DB = process.env.DATABASE.replace(
+  DB = process.env.DB_STRING.replace(
     '<password>',
     process.env.DB_PASSWORD
   )
