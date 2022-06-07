@@ -3,11 +3,10 @@ const mongoose = require('mongoose');
 const constants = require('./utils/constants')
 const dotenv = require('dotenv')
 
-let DB = "mongodb+srv://doadmin:<password>@app-db01-fe45a622.mongo.ondigitalocean.com/story?replicaSet=app-db01&tls=true&authSource=admin"
-
+let DB;
 dotenv.config({path: './config.env'})
 console.log(process.env.NODE_ENV)
-
+console.log("TESTING THE APP")
 if(process.env.NODE_ENV === "production") {
   console.log("is production")
   console.log(process.env.DATABASE_PASSWORD) 
