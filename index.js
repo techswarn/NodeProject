@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv')
 
 dotenv.config({path: './config.env'})
+console.log(process.env.NODE_ENV)
 console.log(process.env.DATABASE)
+if(process.env.NODE_ENV = "production") {
+  console.log("is production")
+}
 const DB = process.env.DATABASE.replace(
     '<password>',
     process.env.DATABASE_PASSWORD
