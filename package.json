@@ -32,11 +32,4 @@
     "swagger-ui-express": "^4.4.0",
     "yamljs": "^0.3.0"
   }
-  // "devDependencies": {
-  //   "morgan": "^1.10.0",
-  //   "nodemon": "^2.0.16",
-  //   "swagger-ui": "^4.11.1",
-  //   "swagger-ui-express": "^4.4.0",
-  //   "yamljs": "^0.3.0"
-  // }
 }
