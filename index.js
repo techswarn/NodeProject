@@ -9,21 +9,16 @@ console.log(process.env.NODE_ENV)
 console.log("TESTING THE APP")
 if(process.env.NODE_ENV === "production") {
   console.log("is production")
-  console.log(process.env.DATABASE_PASSWORD) 
-  console.log(process.env.DB_STRING)
-  
   DB = process.env.DATABASE.replace(
     '<password>',
     process.env.DATABASE_PASSWORD
   )
-  console.log(DB)
-
 } else {
+  console.log("is development")
   DB = process.env.DATABASE.replace(
     '<password>',
     process.env.DATABASE_PASSWORD
   );
-  console.log(DB)
 }
 
 mongoose
