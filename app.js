@@ -21,8 +21,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 //Import all routes
 const userRouter = require('./routes/userRouter')
+const eventRouter = require('./routes/eventRouter')
 
 //router middleware
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/event', eventRouter)
 
 module.exports = app;
