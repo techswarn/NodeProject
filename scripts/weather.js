@@ -23,7 +23,7 @@ const getWeather = async (city) => {
 }
 
 exports.getWeather = () => {
-    cron.schedule('* /30 * * * *', function() {
+    cron.schedule('*/30 * * * *', function() {
         console.log('running a task every minute');
         getWeather();
     });
