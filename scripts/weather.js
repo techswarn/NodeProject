@@ -14,7 +14,7 @@ const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 const getfunc = async() => {
     try{
         const res = await axios.get('https://swarn.tk/funcdemoexpress')
-        console.log(res)
+        console.log(res?.data)
     }catch(err){
         console.log(err)
     }
