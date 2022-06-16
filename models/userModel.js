@@ -28,11 +28,11 @@ const userSchema = new mongoose.Schema({
     photo: {
       id:{
         type: String,
-        required: false
+        // required: false
       },
       secure_url:{
         type: String,
-        required: false
+        // required: false
       }
     },
     role: {
@@ -85,7 +85,7 @@ userSchema.pre("save", async function(next) {
 });
 
 //Verief password, validate the password with passed on user password
-userSchema.method.isValidatedPassword = async function(userPassword){
+userSchema.methods.isValidatedPassword = async function(userPassword){
   return await bcrypt.compare(userPassword, this.password)
 }
 
