@@ -6,14 +6,9 @@
 // const AppError = require('./../utils/appError');
 // // const Email = require('./../utils/email');
 const User = require('./../models/userModel')
-console.log(User)
+
 const catchAsync = require("../utils/catchAsync");
 const appError = require("./../utils/appError")
-
-
-exports.signin = catchAsync(async(req, res, next) => {
-    console.log("sign in")
-})
 
 exports.signup = catchAsync(async(req, res, next) => {
     const {firstName, lastName, userName, email, password, passwordConfirm} = req.body;
@@ -30,10 +25,9 @@ exports.signup = catchAsync(async(req, res, next) => {
         password: password,
         passwordConfirm: passwordConfirm
     });
-    console.log(newUser)
-    //Create cookie token and send back to client
 
-    const token = User.createToken()
+    //Create cookie token and send back to client
+    const token = newUser.createToken()
 
     const option =  {
         expires: new Date(
@@ -42,13 +36,51 @@ exports.signup = catchAsync(async(req, res, next) => {
         httpOnly: true
     }
    
-    res.status(201).cookie('token', token, options).json({
+    res.status(201).cookie('token', token, option).json({
         token: token,
         status: 'success',
         message: 'User created'
       });
 })
 
-exports.hello = catchAsync(async(req, res, next) => {
-    res.status(201).send('<p>some html</p>')
+exports.signin = catchAsync(async(req, res, next) => {
+    console.log(req.body)
+    const {email, password} = req.body
+
+    //Check if email and password exists
+    if(!email || !password) {
+        return next(new appError('Please add email during form submission', 400))
+    }
+
+    const user = await User.findOne({email}).select('+password');
+    console.log(user)
+    const result = await user.isValidatedPassword(password, user.password)
+    console.log(result)
+    if(!user || !(await user.isValidatedPassword(password, user.password))){
+        return next(new appError('Incorrect email or password', 401));
+    }
+    //Create cookie token and send back to client
+    const token = user.createToken()
+
+    const option =  {
+        expires: new Date(
+            Date.now() + 3 * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true
+    }
+   
+    res.status(201).cookie('token', token, option).json({
+        token: token,
+        status: 'success',
+        message: 'User created'
+      });
+})
+
+
+exports.logout = catchAsync(async(req, res, next) => {
+    res.clearCookie('token', null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    })
+    res.status(200).json({status:'success', message:'Succesfully logged out'})
 })

@@ -25,6 +25,7 @@ const eventRouter = require('./routes/eventRouter')
 
 //router middleware
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/event', eventRouter)
+app.use('/api/v1/event', eventRouter);
+
 
 module.exports = app;

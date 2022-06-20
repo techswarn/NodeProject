@@ -84,15 +84,19 @@ userSchema.pre("save", async function(next) {
     next();
 });
 
+userSchema.methods.testFunc = function(){
+  console.log('testing......')
+}
+
 //Verief password, validate the password with passed on user password
 userSchema.methods.isValidatedPassword = async function(userPassword){
   return await bcrypt.compare(userPassword, this.password)
 }
-
+console.log(process.env.JWT_EXPIRY)
 //Create and return JWT token
 userSchema.methods.createToken = function(){
   return jwt.sign({id: this._id}, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRY
+    expiresIn: 60
   })
 }
 
@@ -108,9 +112,6 @@ userSchema.methods.forgotPasswordToken = function () {
   return forgotToken
 }
 
+const User = mongoose.model('User', userSchema);
 
-
-
-const User = mongoose.model('User', userSchema)
-
-module.exports = User
+module.exports = User;

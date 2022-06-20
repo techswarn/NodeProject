@@ -4,7 +4,7 @@ const sayHelloEvent = new EventEmitter;
 
 const weather = require('./../scripts/weather.js')
 const nasa = require('./../scripts/nasa')
-
+const {readFunc} = require('../utils/readini')
 class Sayhello  {
   constructor(name) {
     this.name = name;
@@ -28,5 +28,11 @@ exports.eventHello = (req, res, next) => {
 exports.getAsteroidData = (req, res, next) => {
   nasa.getAsteroidData()
   res.send("Send weather data")
+}
+
+exports.getReadFile = (req, res, next) => {
+  console.log("read file")
+  const data = readFunc()
+  res.status(200).json(data);
 }
 
