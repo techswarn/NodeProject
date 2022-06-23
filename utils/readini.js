@@ -1,12 +1,13 @@
 const fs = require('fs')
 const path = require('path');
-const {decode} = require('ini-decode');
+const ini = require('ini');
 console.log(__dirname)
 
 const readFunc = () => {
+    
     try {
-        const { json: configs, dts }= decode(fs.readFileSync('/Users/ssuvarna/Desktop/code/Node/backend/config.ini', 'latin1').toUpperCase());
-        return configs
+        const config = ini.decode(fs.readFileSync('/Users/ssuvarna/Desktop/code/Node/backend/config.dat', 'latin1').toUpperCase());
+        return config
     } catch (err) {
         console.error(err);
     }
