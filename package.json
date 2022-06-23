@@ -14,7 +14,7 @@
   "author": "swarn",
   "license": "ISC",
 	"engines": {
-    "node": "16.30.0",
+    "node": "16.15.0",
 		"npm": "8.1.0"
 	},
   "dependencies": {
