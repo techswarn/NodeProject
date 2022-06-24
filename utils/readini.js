@@ -6,7 +6,7 @@ console.log(__dirname)
 const readFunc = () => {
     
     try {
-        const config = ini.decode(fs.readFileSync('/Users/ssuvarna/Desktop/code/Node/backend/config.dat', 'latin1').toUpperCase());
+        const config = ini.decode(fs.readFileSync('/Users/ssuvarna/Desktop/code/Node/backend/names.dat', 'latin1').toUpperCase());
         return config
     } catch (err) {
         console.error(err);
