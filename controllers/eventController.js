@@ -19,7 +19,7 @@ let newhello = new Sayhello('swarn')
 
 
 
-exports.eventHello = (req, res, next) => {
+exports.getWeather = (req, res, next) => {
   sayHelloEvent.emit('hello')
   weather.getWeather()
   res.send("Send weather data")
@@ -34,5 +34,9 @@ exports.getReadFile = (req, res, next) => {
   console.log("read file")
   const data = readFunc()
   res.status(200).json(data);
+}
+
+exports.uploadFile = (req, res, next) => {
+  res.send("Send weather data")
 }
 
