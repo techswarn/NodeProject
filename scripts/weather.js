@@ -11,14 +11,14 @@ const axios = require('axios');
 
 const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 
-const getfunc = async() => {
-    try{
-        const res = await axios.get('https://swarn.tk/funcdemoexpress')
-        console.log(res?.data)
-    }catch(err){
-        console.log(err)
-    }
-}
+// const getfunc = async() => {
+//     try{
+//         const res = await axios.get('https://swarn.tk/funcdemoexpress')
+//         console.log(res?.data)
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
 
 const getWeather = async (city) => {
     try {
