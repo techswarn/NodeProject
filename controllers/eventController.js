@@ -43,11 +43,13 @@ exports.uploadFile = (req, res, next) => {
 }
 
 exports.dbupdate = (req, res, next) => {
+  console.log("db pg client called")
   dbupdate.dbCon()
   res.send("db call made")
 }
 
 exports.dbpoolcon = (req, res, next) => {
+  console.log("db pg pool called")
   dbpgpool.dbpoolcon()
   res.send("db call made")
 }
