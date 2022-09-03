@@ -7,4 +7,6 @@ router.get('/weather', eventController.getWeather);
 router.get('/getAsteroidData', eventController.getAsteroidData)
 router.get('/getReadFile', eventController.getReadFile)
 router.post('/uploadFile', eventController.uploadFile)
+router.get('/dbupdate', eventController.dbupdate)
+router.get('/dbpoolcon', eventController.dbpoolcon)
 module.exports  = router;

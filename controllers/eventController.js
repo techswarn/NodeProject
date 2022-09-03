@@ -5,6 +5,8 @@ const sayHelloEvent = new EventEmitter;
 const weather = require('./../scripts/weather.js')
 const nasa = require('./../scripts/nasa')
 const {readFunc} = require('../utils/readini')
+const dbupdate = require('./../scripts/dbupdate')
+const dbpgpool = require('./../scripts/dbpgpool')
 class Sayhello  {
   constructor(name) {
     this.name = name;
@@ -38,5 +40,15 @@ exports.getReadFile = (req, res, next) => {
 
 exports.uploadFile = (req, res, next) => {
   res.send("Send weather data")
+}
+
+exports.dbupdate = (req, res, next) => {
+  dbupdate.dbCon()
+  res.send("db call made")
+}
+
+exports.dbpoolcon = (req, res, next) => {
+  dbpgpool.dbpoolcon()
+  res.send("db call made")
 }
 
