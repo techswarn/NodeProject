@@ -44,7 +44,7 @@ exports.signup = catchAsync(async(req, res, next) => {
 })
 
 exports.signin = catchAsync(async(req, res, next) => {
-    console.log(req.body)
+    console.log(req.headers)
     const {email, password} = req.body
 
     //Check if email and password exists
@@ -83,4 +83,9 @@ exports.logout = catchAsync(async(req, res, next) => {
         httpOnly: true
     })
     res.status(200).json({status:'success', message:'Succesfully logged out'})
+})
+
+exports.checkSite = catchAsync(async(req, res, next) => {
+    console.log(req.headers)
+    res.send("hello world")
 })
