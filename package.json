@@ -4,7 +4,7 @@
   "description": "backend api",
   "main": "index.js",
   "scripts": {
-    "server": "NODE_ENV=production pm2 start index.js",
+    "server": "NODE_ENV=production node index.js",
     "start-dev": "nodemon index.js"
   },
   "keywords": [
