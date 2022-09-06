@@ -55,7 +55,7 @@ exports.dbupdate = (req, res, next) => {
 exports.dbpoolcon = catchAsync(async (req, res, next) => {
   console.log("db pg pool called 1")
   const {rows} = await dbpgpool.dbpoolcon()
-  console.log("db pg pool called 2")
+
   res.status(200).json({
     message: "Success",
     data:rows
