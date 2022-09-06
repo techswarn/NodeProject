@@ -1,4 +1,5 @@
 const { Pool } = require('pg')
+const catchAsync = require("../utils/catchAsync");
 const dotenv = require('dotenv')
 
 dotenv.config({path: './config.env'})
@@ -22,13 +23,8 @@ const dbpoolcon = async () => {
         }
     })
 
-    await pool.query('SELECT NOW()', (err, res) => {
-        console.log(err, res)
-        pool.end()
-    })
+    const result = await pool.query('SELECT * FROM company')
+    return result
 }
 
-exports.dbpoolcon = async () => {
-    console.log('Update PG db pool');
-    await dbpoolcon()
-}
+exports.dbpoolcon = dbpoolcon
