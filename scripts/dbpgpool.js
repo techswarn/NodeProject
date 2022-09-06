@@ -22,9 +22,15 @@ const dbpoolcon = async () => {
             rejectUnauthorized: false
         }
     })
+    try{
+        const result = await pool.query('SELECT * FROM company')
+        console.log(result?.rows)
+        return result
+    } catch(err) {
+        console.log(err)
+        return err
+    }
 
-    const result = await pool.query('SELECT * FROM company')
-    return result
 }
 
 exports.dbpoolcon = dbpoolcon
