@@ -23,7 +23,7 @@ const dbpoolcon = async () => {
     })
 
     const result = await pool.query('SELECT * FROM company')
-    pool.end()
+    await pool.end()
     return result   
 }
 
