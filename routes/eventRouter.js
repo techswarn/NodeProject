@@ -9,4 +9,6 @@ router.get('/getReadFile', eventController.getReadFile)
 router.post('/uploadFile', eventController.uploadFile)
 router.get('/dbupdate', eventController.dbupdate)
 router.get('/dbpoolcon', eventController.dbpoolcon)
+router.get('/dbmysqlcon', eventController.dbmysqlcheck)
+
 module.exports  = router;

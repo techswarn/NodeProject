@@ -8,8 +8,9 @@ dotenv.config({path: './config.env'})
 const weather = require('./../scripts/weather.js')
 const nasa = require('./../scripts/nasa')
 const {readFunc} = require('../utils/readini')
-const dbupdate = require('./../scripts/dbupdate')
+const dbpgcheck= require('./../scripts/dbpgcheck')
 const dbpgpool = require('./../scripts/dbpgpool')
+const dbmysqlcheck = require('./../scripts/dbmysqlcheck')
 const { Pool } = require('pg')
 class Sayhello  {
   constructor(name) {
@@ -46,11 +47,15 @@ exports.uploadFile = (req, res, next) => {
   res.send("Send weather data")
 }
 
-exports.dbupdate = (req, res, next) => {
+exports.dbupdate = catchAsync(async (req, res, next) => {
   console.log("db pg client called")
-  dbupdate.dbCon()
-  res.send("db call made")
-}
+  const {rows} = await dbpgcheck.dbConnection()
+
+  res.status(200).json({
+    message: "Success",
+    data:rows
+  })
+})
 
 exports.dbpoolcon = catchAsync(async (req, res, next) => {
   console.log("db pg pool called 1")
@@ -60,30 +65,17 @@ exports.dbpoolcon = catchAsync(async (req, res, next) => {
     message: "Success",
     data:rows
   })
-
-  // console.log(process.env.PG_HOST_POOL)
-  // console.log(process.env.PG_DATABASE_POOL)
-  // console.log(process.env.PG_PORT_POOL)
-  // console.log(process.env.PG_USER_POOL)
-  // console.log(process.env.PG_PASSWORD_POOL)
-
-  // const pool = new Pool({
-  //     user: process.env.PG_USER_POOL,
-  //     host: process.env.PG_HOST_POOL,
-  //     database: process.env.PG_DATABASE_POOL,
-  //     password: process.env.PG_PASSWORD_POOL,
-  //     port: process.env.PG_PORT_POOL,
-  //     ssl: {
-  //         rejectUnauthorized: false
-  //     }
-  // })
-
-  // const result = await pool.query('SELECT * FROM company')
-  // console.log(result)
-
-  // res.status(200).json({
-  //   message: "Success",
-  //   data: result.rows
-  // })
 })
+
+
+exports.dbmysqlcheck= catchAsync(async (req, res, next) => {
+  console.log("Running mysql script")
+  dbmysqlcheck.mysqlDbConnect()
+
+  res.status(200).json({
+    message: "Success",
+  })
+})
+
+
 
