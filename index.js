@@ -25,7 +25,7 @@ mongoose
   .connect(DB, {
     useNewUrlParser: true,
   })
-  .then(() => console.log('DB connection successful!'));
+  .then(() => console.log('DB connections successful!'));
 
 
 app.listen(process.env.PORT, () => {
