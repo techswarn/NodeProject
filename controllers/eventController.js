@@ -11,6 +11,7 @@ const {readFunc} = require('../utils/readini')
 const dbpgcheck= require('./../scripts/dbpgcheck')
 const dbpgpool = require('./../scripts/dbpgpool')
 const dbmysqlcheck = require('./../scripts/dbmysqlcheck')
+const dbknexcheck = require('./../scripts/dbknexcheck')
 const { Pool } = require('pg')
 class Sayhello  {
   constructor(name) {
@@ -74,6 +75,15 @@ exports.dbmysqlcheck= catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     message: "Success",
+  })
+})
+
+exports.dbknexcheck = catchAsync( async (req, res, next) => {
+  console.log("knex run")
+  const data = await dbknexcheck.dbknexcon()
+
+  res.status(200).json({
+    message: data
   })
 })
 
