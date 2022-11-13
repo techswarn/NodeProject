@@ -4,7 +4,7 @@ dotenv.config({path: './config.env'})
 
 const dbknexcon = async () => {
 
-    if(DEBUG) {
+    if(process.env.DEBUG) {
         console.log(process.env.MYSQL_HOST)
         console.log(process.env.MYSQL_PASSWORD)
         console.log(process.env.MYSQL_USER)
