@@ -25,7 +25,7 @@ const dbknexcon = async () => {
     let data;
 
     try {
-        data = await knex.selec().from('student')
+        data = await knex.select().from('student')
     } catch(err) {
         console.log("Error block")
         console.log(err)
