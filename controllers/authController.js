@@ -9,6 +9,7 @@ const User = require('./../models/userModel')
 
 const catchAsync = require("../utils/catchAsync");
 const appError = require("./../utils/appError")
+const Email = require("./../scripts/sendmail")
 
 exports.signup = catchAsync(async(req, res, next) => {
     const {firstName, lastName, userName, email, password, passwordConfirm} = req.body;
@@ -88,4 +89,29 @@ exports.logout = catchAsync(async(req, res, next) => {
 exports.checkSite = catchAsync(async(req, res, next) => {
     console.log(req.headers)
     res.send("hello world")
+})
+
+// Password forgot password
+exports.forgotPassword = catchAsync(async(req, res, next) => {
+    console.log(req.body)
+    // Check of user exists
+    const {email} = req.body
+    console.log(email)
+
+    const user = await User.findOne({email}).exec()
+    console.log(user)
+
+    if(!user) {
+       return next(new appError("User does not exists", 404)) 
+    }
+
+    //Generate token and send through email
+    const forgotPasswordToken = await user.forgotPasswordToken()
+    console.log(forgotPasswordToken)
+
+    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/users/forgotPassword/${forgotPasswordToken}`
+    console.log(resetUrl)
+    await new Email(user, resetUrl).send("resetPassword", "Reset password email")
+
+    res.send("Forgot password")
 })

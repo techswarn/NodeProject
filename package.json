@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "server": "NODE_ENV=production node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "node -v"
   },
   "engines": {
-    "node": "16.15.0",
-    "yarn": "1.22.1"
+    "node": "18.12.1",
+    "yarn": "1.22.19",
+    "npm": "8.19.2"
   },
   "keywords": [
     "api",
@@ -43,6 +45,7 @@
     "nodemon": "^2.0.16",
     "pg": "^8.7.3",
     "pm2": "^5.2.0",
+    "pug": "^3.0.2",
     "razorpay": "^2.8.1",
     "ssh2-sftp-client": "^9.0.2",
     "stripe": "^9.5.0",

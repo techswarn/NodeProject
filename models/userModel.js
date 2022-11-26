@@ -103,7 +103,7 @@ userSchema.methods.createToken = function(){
 //Create forgot password token
 userSchema.methods.forgotPasswordToken = function () {
   //generate random bytes using crypto
-  const forgotToken = crypto.randomBytes(256).toString('hex')
+  const forgotToken = crypto.randomBytes(32).toString('hex')
   //getting a hash-make sure to get a hash
   this.passwordResetToken = crypto.createHash('sha256').update(forgotToken).digest('hex')
   //time of token
