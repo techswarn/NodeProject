@@ -9,7 +9,7 @@
     "test": "node -v"
   },
   "engines": {
-    "node": "18.12.1",
+    "node": "16.15.0",
     "yarn": "1.22.1"
   },
   "keywords": [
