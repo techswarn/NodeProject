@@ -1,0 +1,172 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DEPLOYMENT_LIVE
+databases:
+- cluster_name: app-db01
+  engine: MONGODB
+  name: app-db01
+  production: true
+  version: "4"
+- engine: PG
+  name: db
+  num_nodes: 1
+  size: db-s-dev-database
+  version: "12"
+domains:
+- domain: swarn.tk
+  type: PRIMARY
+  wildcard: true
+  zone: swarn.tk
+- domain: www.swarn.tk
+  type: ALIAS
+  zone: swarn.tk
+envs:
+- key: NODE_ENV
+  scope: RUN_AND_BUILD_TIME
+  value: production
+- key: DATABASE
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:BcVKFn2rTwkjs7mfwJyQRMR/LH13dp4B:eFdXb3qxIQyKaDpUvI4qRw18OW0GkBbtkfL5hT2OwWfBH4coQP6UqqUlOpPcKAa1iK9pwlf1FaybtMypVHzZduHzLPrP4Hm1BylgZXGw9FIu7exhdtI6JtFkO9LM2HBVXFtNEuO/JkUq6GOJK4sx5JCzpOPWstbOoNndg1MS/Us6HCJ4slEfma2CcYREGbA=]
+- key: CERT_DATA
+  scope: RUN_AND_BUILD_TIME
+  value: ${db-postgresql.CA_CERT}
+- key: TEST
+  scope: RUN_AND_BUILD_TIME
+  value: jncwefnwiecnewi
+- key: DATABASE_PASSWORD
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:vlXCjZXsQqpw2Y6ZsbKqiKTrNTFS+Hmg:1UXxMY9S47QKLIAB2RCLw+Y6E1U0Iv7D9hmptLri1Vc=]
+- key: PG_HOST
+  scope: RUN_AND_BUILD_TIME
+  value: db-postgresql-do-user-11648032-0.b.db.ondigitalocean.com
+- key: PG_DATABASE
+  scope: RUN_AND_BUILD_TIME
+  value: store
+- key: PG_PORT
+  scope: RUN_AND_BUILD_TIME
+  value: ${db-postgresql.PORT}
+- key: PG_USER
+  scope: RUN_AND_BUILD_TIME
+  value: admin
+- key: PG_PASSWORD
+  scope: RUN_AND_BUILD_TIME
+  value: AVNS_qtiPtDvhYEzU0L2SfOb
+- key: PG_HOST_POOL
+  scope: RUN_AND_BUILD_TIME
+  value: db-postgresql-do-user-11648032-0.b.db.ondigitalocean.com
+- key: PG_DATABASE_POOL
+  scope: RUN_AND_BUILD_TIME
+  value: newpool
+- key: PG_PORT_POOL
+  scope: RUN_AND_BUILD_TIME
+  value: ${db-postgresql.PORT}
+- key: PG_USER_POOL
+  scope: RUN_AND_BUILD_TIME
+  value: admin
+- key: PG_PASSWORD_POOL
+  scope: RUN_AND_BUILD_TIME
+  value: AVNS_qtiPtDvhYEzU0L2SfOb
+- key: JWT_SECRET
+  scope: RUN_AND_BUILD_TIME
+  value: efbchecnrywfbeunvywrub
+- key: JWT_EXPIRE
+  scope: RUN_AND_BUILD_TIME
+  value: "90"
+- key: WEATHER_API_KEY
+  scope: RUN_AND_BUILD_TIME
+  value: 1eef195e3a5c0820a311deedd4bba6a8
+- key: NASA_API_KEY
+  scope: RUN_AND_BUILD_TIME
+  value: 40c5TVkeAztBVQGMySMrLyuxaA50vTbiUTXAoUkD
+- key: SPACES_ACCESS_KEY
+  scope: RUN_AND_BUILD_TIME
+  value: LGGBKK5XSC7YOQIVSADX
+- key: SPACES_SECRET_KEY
+  scope: RUN_AND_BUILD_TIME
+  value: xVNypLLHqDGMt07nqoTOs4jK/DNCyg3jiuFQH2uXFQg
+- key: SPACES_ENPOINT
+  scope: RUN_AND_BUILD_TIME
+  value: fra1.digitaloceanspaces.com
+- key: DOMAIN
+  scope: RUN_AND_BUILD_TIME
+  value: ${APP_DOMAIN}
+- key: DOMAIN_URL
+  scope: RUN_AND_BUILD_TIME
+  value: ${APP_URL}
+- key: DB_POOL_URL
+  scope: RUN_AND_BUILD_TIME
+  value: ${db-postgresql.newpool.DATABASE_URL}
+- key: MYSQL_HOST
+  scope: RUN_AND_BUILD_TIME
+  value: db-mysql-blr-do-user-11648032-0.b.db.ondigitalocean.com
+- key: MYSQL_DATABASE
+  scope: RUN_AND_BUILD_TIME
+  value: school
+- key: MYSQL_PORT
+  scope: RUN_AND_BUILD_TIME
+  value: "25060"
+- key: MYSQL_USER
+  scope: RUN_AND_BUILD_TIME
+  value: swarn
+- key: MYSQL_PASSWORD
+  scope: RUN_AND_BUILD_TIME
+  type: SECRET
+  value: EV[1:Soa1L3NmAR/vxRwbKUDDePJmKiWgPb+U:FW+MywueywJj0juGQpSBY1igLlAeG1f28bqbjLrCDTCJxESmBxvzsw==]
+- key: DEBUG
+  scope: RUN_AND_BUILD_TIME
+  value: "1"
+features:
+- enable-kata-build
+name: seal-app
+region: blr
+services:
+- environment_slug: node-js
+  envs:
+  - key: PG_PORT_POOL
+    scope: RUN_AND_BUILD_TIME
+    value: "25061"
+  - key: PG_DATABASE_POOL
+    scope: RUN_AND_BUILD_TIME
+    value: newpool
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: techswarn/NodeProject
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: professional-m
+  log_destinations:
+  - datadog:
+      api_key: 8a7a3d80a856709aa40b98b4401d7617
+      endpoint: https://http-intake.logs.datadoghq.com/v1/input
+    name: Nodeproject
+  - name: app
+    papertrail:
+      endpoint: syslog+tls://logs5.papertrailapp.com:24536
+  name: nodeproject
+  routes:
+  - path: /nodeproject
+  run_command: |-
+    npm run test
+    npm run server
+  source_dir: /
+- build_command: npm run build
+  environment_slug: node-js
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: techswarn/image-galary-next
+  http_port: 8080
+  instance_count: 2
+  instance_size_slug: professional-xs
+  log_destinations:
+  - name: image-next
+    papertrail:
+      endpoint: syslog+tls://logs5.papertrailapp.com:24536
+  name: image-galary-next
+  routes:
+  - path: /image-galary-next
+  run_command: npm start
+  source_dir: /
