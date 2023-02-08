@@ -120,7 +120,7 @@ envs:
 features:
 - enable-kata-build
 name: seal-app
-region: blr
+region: ams
 services:
 - environment_slug: node-js
   envs:

@@ -20,7 +20,12 @@ app.use(fileUpload())
 //Middlewares
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(function (req, res, next) {
-    res.set('Cache-control', 'public, max-age=300')
+ //   res.set('Cache-control', 'public, max-age=300')
+    res.set("Connection", "keep-alive")
+    res.set("Content-Type", "text/event-stream")
+    res.set("Cache-Control", "no-store, no-transform")
+    res.set("X-Accel-Buffering", "no")
+    res.set("Speak-of-the-devil", "I was just thinking about you!")
     next()
 })
 
