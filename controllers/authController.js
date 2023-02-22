@@ -89,10 +89,14 @@ exports.logout = catchAsync(async(req, res, next) => {
 exports.checkSite = catchAsync(async(req, res, next) => {
     console.log(req.headers)
     const timestamp = Math.floor(Date.now()/1000)*1000
+    const normalFormat = new Date(timestamp)
+    
     const timestamp1 = new Date().getDay()
+
     console.log(timestamp)
     console.log(timestamp1)
-    res.send(`Sent hello world at ${timestamp} , ${timestamp1} `)
+
+    res.send(`Sent hello world at ${normalFormat} , ${timestamp1} `)
 })
 
 // Password forgot password
