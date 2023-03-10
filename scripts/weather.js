@@ -15,9 +15,8 @@ const getWeather = async (city) => {
     console.log("-----1-----")
     try {
        const res = await axios.post(`${baseUrl}?lat=12.9141&lon=74.8560&appid=${process.env.WEATHER_API_KEY}`);
-       console.log(res)
        const tempCel = res?.data?.main?.temp - 273.15
-       console.log(`Temperature in mangalore is ${tempCel}`)
+       console.log(`Temperature in mangalore is ${tempCel} c`)
        return res;
     } catch(err) {
         console.log(err)
@@ -27,7 +26,6 @@ const getWeather = async (city) => {
 exports.getWeather = () => {
     cron.schedule('* * * * *', function() {
         console.log('running a task every minute');
-        getfunc()
         getWeather();
     });
 }
