@@ -11,5 +11,6 @@ router.get('/dbupdate', eventController.dbupdate)
 router.get('/dbpoolcon', eventController.dbpoolcon)
 router.get('/dbmysqlcon', eventController.dbmysqlcheck)
 router.get('/dbknexcheck', eventController.dbknexcheck)
+router.get('/dbSquelizecheck', eventController.dbSquelizecheck)
 
 module.exports  = router;
