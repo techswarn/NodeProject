@@ -21,11 +21,11 @@ if(process.env.NODE_ENV === "production") {
   );
 }
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-  })
-  .then(() => console.log('MongoDB connections successful!'));
+// mongoose
+//   .connect(DB, {
+//     useNewUrlParser: true,
+//   })
+//   .then(() => console.log('MongoDB connections successful!'));
 
 
 app.listen(process.env.PORT, () => {

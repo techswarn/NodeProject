@@ -11,6 +11,16 @@ const axios = require('axios');
 
 const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 
+const fs = require('fs');
+const path = require('path');
+
+// Creates /tmp/a/apple, regardless of whether `/tmp` and /tmp/a exist.
+console.log(__dirname)
+const dirPath = path.join(__dirname, '/tmp');
+fs.mkdir(dirPath, { recursive: true }, (err) => {
+  if (err) throw err;
+}); 
+
 const getWeather = async (city) => {
     console.log("-----1-----")
     try {
