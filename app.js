@@ -8,6 +8,14 @@ const swaggerDocument = YAML.load('./swagger.yaml')
 //const cacheControlMiddleware = require('./middleware/cacheControlMiddleware')
 
 const app = express()
+const memoryCheck = require('node:process');
+
+
+
+app.get('/', (req, res) => {
+    const memObj= memoryCheck.memoryUsage()
+  res.send(memObj)
+})
 //Regular middlewares
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json())
