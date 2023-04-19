@@ -9,7 +9,7 @@ const dbpoolcon = async () => {
     console.log("Database: " + process.env.PG_DATABASE_POOL)
     console.log("Port: " + process.env.PG_PORT_POOL)
     console.log("User: " + process.env.PG_USER_POOL)
-//    console.log("Password: " + process.env.PG_PASSWORD_POOL)
+    console.log("Password: " + process.env.PG_PASSWORD_POOL)
 
     const pool = new Pool({
         user: process.env.PG_USER_POOL,
