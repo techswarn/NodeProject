@@ -1,6 +1,5 @@
 const cron = require('node-cron');
 const axios = require('axios');
-const process = require('node:process')
 // * * * * * *
 // | | | | | |
 // | | | | | day of week
@@ -27,7 +26,6 @@ const getWeather = async (city) => {
     try {
         const res = await axios.get(`https://func-app-rrg4j.ondigitalocean.app/users/createUser`);
         console.log(res)
-        process.exit(1)
     } catch(err) {
         console.log(err)
     }
