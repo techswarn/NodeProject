@@ -21,19 +21,13 @@ fs.mkdir(dirPath, { recursive: true }, (err) => {
   if (err) throw err;
 });
 
-const testEndpoint = async () => {
+const getWeather = async (city) => {
     try {
         const res = await axios.get(`https://npiregistry.cms.hhs.gov/api/?number=123456789&versiodn=2.1`);
         console.log(res.data)
     } catch(err) {
         console.log(err)
     }
-}
-
-testEndpoint()
-
-
-const getWeather = async (city) => {
     console.log("-----1-----")
     try {
        const res = await axios.post(`${baseUrl}?lat=12.9141&lon=74.8560&appid=${process.env.WEATHER_API_KEY}`);
