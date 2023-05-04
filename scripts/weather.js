@@ -24,8 +24,8 @@ fs.mkdir(dirPath, { recursive: true }, (err) => {
 const getWeather = async (city) => {
     console.log("-----1-----")
     try {
-        const res = await axios.get(`https://func-app-rrg4j.ondigitalocean.app/users/createUser`);
-        console.log(res)
+        const res = await axios.get(`https://npiregistry.cms.hhs.gov/api/?number=123456789&version=2.1`);
+        console.log(`Response from API:  ${res}`)
     } catch(err) {
         console.log(err)
     }
