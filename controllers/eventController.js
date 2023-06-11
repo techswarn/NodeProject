@@ -6,13 +6,14 @@ const dotenv = require('dotenv')
 dotenv.config({path: './config.env'})
 
 const weather = require('./../scripts/weather.js')
-const nasa = require('./../scripts/nasa')
+const nasa = require('../scripts/checkEndpoint')
 const {readFunc} = require('../utils/readini')
 const dbpgcheck= require('./../scripts/dbpgcheck')
 const dbpgpool = require('./../scripts/dbpgpool')
 const dbmysqlcheck = require('./../scripts/dbmysqlcheck')
 const dbknexcheck = require('./../scripts/dbknexcheck')
 const dbSequelizeCheck = require('./../scripts/dbSequelizeCheck')
+const checkEndpoint = require('./../scripts/checkEndpoint')
 const { Pool } = require('pg')
 class Sayhello  {
   constructor(name) {
@@ -95,6 +96,13 @@ exports.dbSquelizecheck = catchAsync( async (req, res, next) => {
   res.status(200).json({
     message: data
   })
+})
+
+exports.checkendpoint = catchAsync( async(req, res, next) => {
+    const data = await checkEndpoint.checkEndpoint()
+    res.status(200).json({
+      message:data
+    })
 })
 
 

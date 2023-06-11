@@ -12,5 +12,6 @@ router.get('/dbpoolcon', eventController.dbpoolcon)
 router.get('/dbmysqlcon', eventController.dbmysqlcheck)
 router.get('/dbknexcheck', eventController.dbknexcheck)
 router.get('/dbSquelizecheck', eventController.dbSquelizecheck)
+router.get('/checkapi', eventController.checkendpoint)
 
 module.exports  = router;
