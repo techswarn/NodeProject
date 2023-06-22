@@ -15,6 +15,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   console.log(req.body);
   const { firstName, lastName, userName, email, password, passwordConfirm } =
     req.body;
+  console.log(`EMail: ${email}`);
 
   if (!email || !firstName || !lastName || !userName) {
     return next(new appError("Please add email during form submission", 400));
