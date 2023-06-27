@@ -20,7 +20,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (!email || !firstName || !lastName || !userName) {
     return next(new appError("Please add email during form submission", 400));
   }
-  console.log(req.body);
+  console.log(`reqbody: ${req.body}`);
   const newUser = await User.create({
     firstName: firstName,
     lastName: lastName,

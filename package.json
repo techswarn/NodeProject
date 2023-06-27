@@ -44,7 +44,6 @@
     "mysql": "^2.18.1",
     "node-cron": "^3.0.1",
     "nodemailer": "^6.7.5",
-    "nodemon": "^2.0.16",
     "npm": "^9.6.5",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
@@ -53,9 +52,12 @@
     "razorpay": "^2.8.1",
     "redis": "^4.6.5",
     "stripe": "^9.5.0",
-    "swagger-ui": "^4.11.1",
-    "swagger-ui-express": "^4.4.0",
     "validator": "^13.7.0",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "swagger-ui": "^4.11.1",
+    "swagger-ui-express": "^4.4.0",
+    "nodemon": "^2.0.16"
   }
 }
