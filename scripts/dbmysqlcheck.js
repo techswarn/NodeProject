@@ -32,14 +32,21 @@ const mysqlDbConnect = async () => {
     }
   });
   let row;
-  connection.query("select * from student", (err, result, fields) => {
-    if (err) {
-      console.log("err in query: " + err);
-    }
 
-    console.log(result);
-    row = result;
-  });
+  try {
+    connection.query("select * from student", (err, result, fields) => {
+      if (err) {
+        console.log("err in query: " + err);
+      }
+
+      console.log(result);
+      row = result;
+    });
+  } catch (err) {
+    console.log(`Error MYSQL: ${err}`);
+  } finally {
+    //connection.end();
+  }
 
   // try {
   //     row = await connection.query( 'select * from student' );
@@ -47,7 +54,7 @@ const mysqlDbConnect = async () => {
   //     console.log('query error: ' + err)
   // }
   // console.log(row)
-  //connection.end();
+
   return row;
 };
 
