@@ -47,7 +47,7 @@ const mysqlDbConnect = async () => {
   //     console.log('query error: ' + err)
   // }
   // console.log(row)
-  connection.end();
+  //connection.end();
   return row;
 };
 
