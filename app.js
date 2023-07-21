@@ -7,6 +7,7 @@ const YAML = require("yamljs");
 const cors = require("cors");
 const swaggerDocument = YAML.load("./swagger.yaml");
 const bodyParser = require("body-parser");
+const v8 = require("node:v8");
 //const cacheControlMiddleware = require('./middleware/cacheControlMiddleware')
 
 const app = express();
@@ -24,6 +25,8 @@ app.get("/", (req, res) => {
   const external = `${memObj.external}` / 1000000;
   const arrayBuffers = `${memObj.arrayBuffers}` / 1000000;
 
+  const data = v8.getHeapStatistics();
+  console.log(data);
   res.send({ rss, heapTotal, heapUsed, external, arrayBuffers });
 });
 //Regular middlewares
