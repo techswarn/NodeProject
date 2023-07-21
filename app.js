@@ -18,11 +18,11 @@ app.get("/", (req, res) => {
   for (const [key, value] of Object.entries(memObj)) {
     console.log(`Memory usage by ${key}, ${value / 1000000}MB `);
   }
-  const rss = `${memObj.rss} / 1000000`;
-  const heapTotal = `${memObj.heapTotal} / 1000000`;
-  const heapUsed = `${memObj.heapUsed} / 1000000`;
-  const external = `${memObj.external} / 1000000`;
-  const arrayBuffers = `${memObj.arrayBuffers} / 1000000`;
+  const rss = `${memObj.rss}` / 1000000;
+  const heapTotal = `${memObj.heapTotal}` / 1000000;
+  const heapUsed = `${memObj.heapUsed}` / 1000000;
+  const external = `${memObj.external}` / 1000000;
+  const arrayBuffers = `${memObj.arrayBuffers}` / 1000000;
 
   res.send({ rss, heapTotal, heapUsed, external, arrayBuffers });
 });
