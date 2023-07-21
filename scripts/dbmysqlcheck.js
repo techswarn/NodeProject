@@ -40,7 +40,7 @@ const mysqlDbConnect = async () => {
       }
 
       console.log(result);
-      row = result;
+      return result;
     });
   } catch (err) {
     console.log(`Error MYSQL: ${err}`);
@@ -54,8 +54,6 @@ const mysqlDbConnect = async () => {
   //     console.log('query error: ' + err)
   // }
   // console.log(row)
-
-  return row;
 };
 
 exports.mysqlDbConnect = mysqlDbConnect;
