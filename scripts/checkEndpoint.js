@@ -1,18 +1,14 @@
 const axios = require("axios");
+const { writeFileSync } = require("fs");
 
 const checkEndpoint = async () => {
   let data;
   try {
-    const res = await axios.post(
-      "",
-      {},
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    data = res;
+    const path = `${__dirname}/../media/sample.json`;
+    console.log(path);
+    const sample = { name: "sample" };
+    writeFileSync(path, JSON.stringify(sample, null, 2), "utf8");
+    console.log("Data successfully saved");
   } catch (err) {
     console.log(err);
   }
