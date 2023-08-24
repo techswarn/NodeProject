@@ -99,11 +99,17 @@ exports.dbSquelizecheck = catchAsync(async (req, res, next) => {
 });
 
 exports.checkendpoint = catchAsync(async (req, res, next) => {
-  console.log(req);
-  const data = await checkEndpoint.checkEndpoint();
-  res.status(200).json({
-    message: data,
-  });
+  const data = await checkEndpoint.checkEndpoint(req);
+
+  if (data) {
+    res.status(200).json({
+      message: "Healthy",
+    });
+  } else {
+    res.status(500).json({
+      message: "Unhealthy",
+    });
+  }
 });
 
 exports.imageprocess = catchAsync(async (req, res, next) => {

@@ -1,20 +1,18 @@
 const axios = require("axios");
+const dotenv = require("dotenv");
 const { writeFileSync } = require("fs");
+dotenv.config({ path: "./config.env" });
 
-const checkEndpoint = async () => {
-  let data;
-  try {
-    const path = `${__dirname}/../media/sample.json`;
-    console.log(path);
-    const sample = { name: "sample" };
-    writeFileSync(path, JSON.stringify(sample, null, 2), "utf8");
-    console.log("Data successfully saved");
-  } catch (err) {
-    console.log(err);
+const checkEndpoint = async (req) => {
+  console.log(process.env.DEBUG);
+  const status = process.env.DEBUG;
+  if (status == 1) {
+    data = true;
+  } else {
+    data = false;
   }
-
   console.log(data);
-  return data?.data;
+  return data;
 };
 
 exports.checkEndpoint = checkEndpoint;
