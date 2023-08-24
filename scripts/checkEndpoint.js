@@ -6,7 +6,7 @@ dotenv.config({ path: "./config.env" });
 const checkEndpoint = async (req) => {
   const num = Math.floor(Math.random() * 10);
   console.log(num);
-  if (num > 5) {
+  if (num > 7) {
     return true;
   } else {
     return false;
