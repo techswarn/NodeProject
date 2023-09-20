@@ -55,7 +55,7 @@ exports.signin = catchAsync(async (req, res, next) => {
   }
 
   const user = await User.findOne({ email }).select("+password");
-  console.log(user);
+
   const result = await user.isValidatedPassword(password, user.password);
   console.log(result);
   if (!user || !(await user.isValidatedPassword(password, user.password))) {

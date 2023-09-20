@@ -1,8 +1,11 @@
 //https://github.com/image-js/image-js
-const { Image } = require("image-js");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
+const { Image } = require("image-js");
+console.log(__dirname);
 async function imgProcess() {
-  let image = await Image.load(__dirname + "/profile.jpg");
+  let image = await Image.load(process.env.FILE_PATH);
   let grey;
   try {
     grey = image.resize({ width: 200 });

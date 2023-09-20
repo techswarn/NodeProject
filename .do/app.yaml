@@ -140,3 +140,13 @@ services:
     name: mainapp
     run_command: npm start
     source_dir: /
+workers:
+  - dockerfile_path: Dockerfile
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: techswarn/docker-cron
+    instance_count: 1
+    instance_size_slug: professional-xs
+    name: dockercron
+    source_dir: /
