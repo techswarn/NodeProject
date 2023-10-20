@@ -131,3 +131,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   res.send("Forgot password");
 });
+
+exports.isAuthCheck = catchAsync(async (req, res, next) => {
+  let token;
+  if (req.headers.Autho) res.status(200).json({});
+});

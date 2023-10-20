@@ -17,6 +17,7 @@ const dbknexcheck = require("./../scripts/dbknexcheck");
 const dbSequelizeCheck = require("./../scripts/dbSequelizeCheck");
 const checkEndpoint = require("./../scripts/checkEndpoint");
 const imageProcess = require("./../scripts/imageProcess");
+const checkRedisCon = require("./../scripts/dbredisCheck");
 
 class Sayhello {
   constructor(name) {
@@ -117,4 +118,10 @@ exports.imageprocess = catchAsync(async (req, res, next) => {
   data === true
     ? res.status(200).json({ message: "Image resized successfull" })
     : res.status(500).json({ message: "something went wrong" });
+});
+
+exports.checkRedis = catchAsync(async (req, res, next) => {
+  //console.log(req);
+  const data = await checkRedisCon.checkRedis();
+  res.status(200).json({ message: "testing" });
 });

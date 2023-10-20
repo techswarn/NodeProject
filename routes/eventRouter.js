@@ -17,5 +17,6 @@ router.get("/dbknexcheck", eventController.dbknexcheck);
 router.get("/dbSquelizecheck", eventController.dbSquelizecheck);
 router.get("/checkapi", eventController.checkendpoint);
 router.post("/imgprocess", upload.single("file"), eventController.imageprocess);
+router.get("/checkredis", eventController.checkRedis);
 
 module.exports = router;

@@ -1,22 +1,24 @@
 const { createClient } = require("redis");
+const dotenv = require("dotenv");
 
+dotenv.config({ path: "./config.env" });
 const checkRedis = async () => {
+  let response = "";
   console.log("redis test");
 
-  // (async () => {
-  //     await redisclient.connect();
-  // })();
-  const client = await redis.createClient({
+  const client = await createClient({
     socket: {
-      host: "db-redis-blr1-95522-do-user-11648032-0.b.db.ondigitalocean.com",
-      port: "25061",
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT,
     },
-    username: "default",
-    password: "somerandome",
+    password: process.env.REDIS_PASSWORD,
   });
-  await client.connect();
+  const check = await client.connect();
+
   client.on("ready", () => {
     console.log("Connected!");
+    response = "Successfully connected to resdis DB";
+    return response;
   });
 
   client.on("error", (err) => console.log("Redis Server Error", err));
@@ -31,4 +33,4 @@ const checkRedis = async () => {
   // console.log(res)
 };
 
-checkRedis();
+exports.checkRedis = checkRedis;
