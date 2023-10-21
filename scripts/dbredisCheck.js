@@ -17,6 +17,7 @@ const checkRedis = async () => {
 
   client.on("ready", () => {
     console.log("Connected!");
+
     response = "Successfully connected to resdis DB";
     return response;
   });
