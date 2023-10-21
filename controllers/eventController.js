@@ -122,6 +122,7 @@ exports.imageprocess = catchAsync(async (req, res, next) => {
 
 exports.checkRedis = catchAsync(async (req, res, next) => {
   //console.log(req);
-  const data = await checkRedisCon.checkRedis();
-  res.status(200).json({ message: "testing" });
+  const data = await checkRedisCon.checkRedis(req.body);
+
+  res.status(200).json({ message: `Successfully added ${data}` });
 });

@@ -2,36 +2,32 @@ const { createClient } = require("redis");
 const dotenv = require("dotenv");
 
 dotenv.config({ path: "./config.env" });
-const checkRedis = async () => {
-  let response = "";
-  console.log("redis test");
 
-  const client = await createClient({
-    socket: {
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT,
-    },
-    password: process.env.REDIS_PASSWORD,
-  });
-  const check = await client.connect();
+const client = createClient({
+  url: process.env.REDIS_URL,
+});
+client.on("error", (err) => console.log("Redis Client Error", err));
 
-  client.on("ready", () => {
-    console.log("Connected!");
+const redisConnect = async () => {
+  try {
+    await client.connect();
+    console.log("Redis connection successfull ");
+  } catch (error) {
+    console.log("Redis error:" + error);
+  }
+};
+redisConnect();
 
-    response = "Successfully connected to resdis DB";
-    return response;
-  });
+const addvalue = async (data) => {
+  await client.set("foo", data.value);
+  const value = await client.get("foo");
+  console.log(value);
+  return value;
+};
 
-  client.on("error", (err) => console.log("Redis Server Error", err));
-  // try {
-  //
-  //     console.log('Connected')
-  // }catch(err){
-  //     console.log(`Error while client.connect : ${err}`)
-  // }
-  // await client.set('foo', 'bar');
-  // const res = await client.get('foo');
-  // console.log(res)
+const checkRedis = async (data) => {
+  const res = await addvalue(data);
+  return res;
 };
 
 exports.checkRedis = checkRedis;
