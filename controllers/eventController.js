@@ -75,6 +75,7 @@ exports.dbpoolcon = catchAsync(async (req, res, next) => {
 exports.dbmysqlcheck = catchAsync(async (req, res, next) => {
   console.log("Running mysql script");
   const data = await dbmysqlcheck.mysqlDbConnect();
+  console.log("Returned data from listings: " + data);
 
   res.status(200).json({
     message: data,

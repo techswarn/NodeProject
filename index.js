@@ -25,11 +25,11 @@ if (process.env.NODE_ENV === "production") {
 
 //Initialize mongodb connection here
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-  })
-  .then(() => console.log("MongoDB connections successful!"));
+// mongoose
+//   .connect(DB, {
+//     useNewUrlParser: true,
+//   })
+//   .then(() => console.log("MongoDB connections successful!"));
 
 // Implement redis connection here
 
