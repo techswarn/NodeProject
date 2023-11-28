@@ -24,7 +24,7 @@ const dbknexcon = async () => {
   let data;
 
   try {
-    data = await knex.select().from("listings").limit(10000);
+    data = await knex.select().from("listings").limit(500);
   } catch (err) {
     console.log("Error block");
     console.log(err);
