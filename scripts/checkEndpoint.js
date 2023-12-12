@@ -4,9 +4,9 @@ const { writeFileSync } = require("fs");
 dotenv.config({ path: "./config.env" });
 
 const checkEndpoint = async (req) => {
-  const url =
-    "https://faas-blr1-8177d592.doserverless.co/api/v1/web/fn-0b0f94ea-326e-434f-a6db-e297bf02f150/webinvoke/invoke";
+  const url = "https://epochcms-ahdv4.ondigitalocean.app/api/blogs";
   let response;
+  console.log(response.status);
   try {
     response = await axios.get(url);
   } catch (error) {
