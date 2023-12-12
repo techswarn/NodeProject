@@ -10,9 +10,9 @@ const checkEndpoint = async (req) => {
     "https://epochcms-ahdv4.ondigitalocean.app/api/blogs?sort[0]=posted%3Adesc&populate=%2A&filters[featured][$eq]=true";
   let response;
 
-  console.log(response);
   try {
     response = await axios.get(url);
+    console.log(response);
   } catch (error) {
     console.error(error);
   }
