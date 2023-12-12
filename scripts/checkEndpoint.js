@@ -4,7 +4,8 @@ const { writeFileSync } = require("fs");
 dotenv.config({ path: "./config.env" });
 
 const checkEndpoint = async (req) => {
-  const url = "https://epochcms-ahdv4.ondigitalocean.app/api/blogs";
+  const url =
+    "https://epochcms-ahdv4.ondigitalocean.app/api/blogs?sort[0]=posted%3Adesc&populate=%2A&filters[featured][$eq]=true";
   let response;
   console.log(response.status);
   try {
