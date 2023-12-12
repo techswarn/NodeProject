@@ -100,6 +100,7 @@ exports.dbSquelizecheck = catchAsync(async (req, res, next) => {
 });
 
 exports.checkendpoint = catchAsync(async (req, res, next) => {
+  console.log("here 1");
   const data = await checkEndpoint.checkEndpoint(req);
   if (data) {
     res.status(200).json({
