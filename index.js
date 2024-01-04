@@ -23,6 +23,13 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
+process.on("SIGINT", () => {
+  console.log("SIGINT signal received from process. Shutting down...");
+});
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received from process. Shutting down...");
+});
 //Initialize mongodb connection here
 
 // mongoose
