@@ -4,8 +4,8 @@ const constants = require("./utils/constants");
 const dotenv = require("dotenv");
 const { createClient } = require("redis");
 
-process.on("SIGINT", () => {
-  console.log("SIGINT signal received from process. Shutting down...");
+process.on("SIGKILL`", () => {
+  console.log("SIGKILL signal received from process. Shutting down...");
 });
 
 process.on("SIGTERM", () => {
@@ -60,5 +60,5 @@ client.on("error", (err) => console.log("Redis Client Error: ", err));
 redisConnect();
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on PORT ${process.env.PORT}`);
+  console.log(`Server running on PORT : ${process.env.PORT}`);
 });
