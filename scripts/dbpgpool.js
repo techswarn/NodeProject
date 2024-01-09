@@ -20,8 +20,13 @@ const dbpoolcon = async () => {
       rejectUnauthorized: false,
     },
   });
+  let result;
 
-  const result = await pool.query("SELECT NOW()");
+  try {
+    result = await pool.query("SELECT NOW()");
+  } catch (err) {
+    console.log("Error connection pool: " + err);
+  }
 
   await pool.end();
   return result;
