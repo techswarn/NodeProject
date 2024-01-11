@@ -24,7 +24,7 @@ envs:
   - key: WEATHER_API_KEY
     scope: RUN_AND_BUILD_TIME
     type: SECRET
-    value: EV[1:GDeSW2TK1tuukTmKf3b7YISX20B3FeDR:At1POhg9F/OA/4RDCrwNBSYoZrpfkSDEJqqOwFDZ/U/bv+PKWksOeg7uEWIaxyGO]
+    value: "ascdsacwdf"
   - key: NPM_CONFIG_PRODUCTION
     scope: RUN_AND_BUILD_TIME
     value: "false"
@@ -56,53 +56,6 @@ name: seal-app
 region: sfo
 services:
   - environment_slug: node-js
-    envs:
-      - key: PG_DATABASE_POOL
-        scope: RUN_AND_BUILD_TIME
-        value: pool_1
-      - key: DATABASE
-        scope: RUN_AND_BUILD_TIME
-        value: mongodb+srv://doadmin:<password>@app-db01-fe45a622.mongo.ondigitalocean.com/story?tls=true&authSource=admin&replicaSet=app-db01
-      - key: CA_CERT
-        scope: RUN_AND_BUILD_TIME
-        value: ${app-db01.CA_CERT}
-      - key: NODE_OPTIONS
-        scope: RUN_AND_BUILD_TIME
-        value: --max-old-space-size=1024
-      - key: MONGO_CA_CERT
-        scope: RUN_AND_BUILD_TIME
-        value: ${app-db01.CA_CERT}
-      - key: PG_HOST_POOL
-        scope: RUN_AND_BUILD_TIME
-        value: ${db-postgresql-blr1-new.pool_1.HOSTNAME}
-      - key: PG_PORT_POOL
-        scope: RUN_AND_BUILD_TIME
-        value: ${db-postgresql-blr1-new.pool_1.PORT}
-      - key: PG_USER_POOL
-        scope: RUN_AND_BUILD_TIME
-        value: ${db-postgresql-blr1-new.pool_1.USERNAME}
-      - key: PG_PASSWORD_POOL
-        scope: RUN_AND_BUILD_TIME
-        value: ${db-postgresql-blr1-new.pool_1.PASSWORD}
-      - key: MYSQL_HOST
-        scope: RUN_AND_BUILD_TIME
-        value: db-mysql-blr-do-user-11648032-0.b.db.ondigitalocean.com
-      - key: MYSQL_DATABASE
-        scope: RUN_AND_BUILD_TIME
-        value: school
-      - key: MYSQL_PORT
-        scope: RUN_AND_BUILD_TIME
-        value: "25060"
-      - key: MYSQL_USER
-        scope: RUN_AND_BUILD_TIME
-        value: swarn
-      - key: MYSQL_PASSWORD
-        scope: RUN_AND_BUILD_TIME
-        value: AVNS_Ca8cvIzONVZgfSdNUwZ
-      - key: DATABASE_PASSWORD
-        scope: RUN_AND_BUILD_TIME
-        type: SECRET
-        value: EV[1:p1T31dgaOWrwBwlxpahBcPzjrvTrLCtj:UXpW+uZCmEZd1tzyu3m6Et0oxEmipQ0EeBNbnv9vpG4=]
     github:
       branch: main
       deploy_on_push: true
