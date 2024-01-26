@@ -1,5 +1,7 @@
 FROM node:alpine
 
+RUN apk update && apk add chromium
+
 ARG PORT
 ENV PORT=${PORT}
 ARG NODE_ENV
