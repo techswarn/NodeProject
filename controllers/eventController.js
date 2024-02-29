@@ -114,7 +114,7 @@ exports.checkendpoint = catchAsync(async (req, res, next) => {
 });
 
 exports.imageprocess = catchAsync(async (req, res, next) => {
-  console.log(req);
+  // console.log(req);
   const data = await imageProcess.imgProcess();
   data === true
     ? res.status(200).json({ message: "Image resized successfull" })

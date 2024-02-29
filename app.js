@@ -14,8 +14,16 @@ const app = express();
 app.use(cors());
 const memoryCheck = require("node:process");
 
+app.use((req, res, next) => {
+  console.log("Hostname : " + req.hostname);
+  if (req.hostname === "techenv.dev") {
+    return res.redirect(301, `https://www.${req.hostname}${req.url}`);
+  }
+  next();
+});
+
 app.get("/health", (req, res) => {
-  console.log(JSON.stringify(req.headers));
+  // console.log(JSON.stringify(req.headers));
   res.status(200).json({
     health: "Online",
   });
