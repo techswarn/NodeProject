@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "backend api",
   "main": "index.js",
+  "packageManager": "yarn@4.1.0",
   "scripts": {
     "server": "NODE_ENV=production node index.js",
     "dev": "nodemon index.js",
