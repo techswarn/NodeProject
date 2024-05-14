@@ -1,42 +1,42 @@
-"use strict"
+"use strict";
 
-const nodemailer = require("nodemailer")
-const pug = require('pug')
+const nodemailer = require("nodemailer");
+const pug = require("pug");
 
 module.exports = class Email {
   constructor(user, url) {
-    this.to = user.email,
-    this.from = user.from,
-    this.firstname = user.firstname,
-    this.url = url
+    (this.to = user.email),
+      (this.from = user.from),
+      (this.firstname = user.firstname),
+      (this.url = url);
   }
 
   transporter() {
     //for development only
-    return nodemailer.createTransport(
-      {
-          host: "smtp.mailtrap.io",
-          port: 2525,
-          auth: {
-            user: "8c6eaf906bc876",
-            pass: "4c20d76980f670"
-          }
-      }
-    )
+    return nodemailer.createTransport({
+      host: "smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: "dcbb9f072819b8",
+        pass: "2fb18430c69050",
+      },
+    });
   }
 
-  async send(template, subject) {   
-
-    const html = pug.renderFile(`${__dirname}/../data/templates/${template}.pug`,{
-      firstName: this.firstname,
-      subject,
-      link: this.url
-    })
+  async send(template, subject) {
+    const html = pug.renderFile(
+      `${__dirname}/../data/templates/${template}.pug`,
+      {
+        firstName: this.firstname,
+        subject,
+        link: this.url,
+      }
+    );
 
     // send mail with defined transport object
     let info;
 
-    let newTransporter = this.transporter()
+    let newTransporter = this.transporter();
 
     try {
       info = await newTransporter.sendMail({
@@ -45,8 +45,9 @@ module.exports = class Email {
         subject: subject, // Subject line
         text: "Hello world?", // plain text body
         html: html, // html body
-    })}catch(err){
-      console.log(`send email error: ${err}`)
+      });
+    } catch (err) {
+      console.log(`send email error: ${err}`);
     }
 
     console.log("Message sent: %s", info.messageId);
@@ -56,5 +57,4 @@ module.exports = class Email {
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   }
-
-}
+};
