@@ -1,7 +1,6 @@
 FROM node:alpine
 
 RUN apk update && apk add chromium
-RUN apt-get -y install mtr
 
 ARG PORT
 ENV PORT=${PORT}
