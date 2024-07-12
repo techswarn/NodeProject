@@ -5,7 +5,7 @@
   "main": "index.js",
   "packageManager": "yarn@4.1.0",
   "scripts": {
-    "server": "NODE_ENV=production node index.js",
+    "server": "node index.js",
     "dev": "nodemon index.js",
     "test": "node -v"
   },
