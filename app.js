@@ -2,7 +2,6 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
-const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const cors = require("cors");
 const swaggerDocument = YAML.load("./swagger.yaml");
