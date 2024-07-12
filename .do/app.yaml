@@ -1,105 +1,170 @@
 alerts:
   - rule: DEPLOYMENT_FAILED
-  - rule: DEPLOYMENT_LIVE
-databases:
-  - cluster_name: app-db01
-    engine: MONGODB
-    name: app-db01
-    production: true
-    version: "4"
-  - cluster_name: db-postgresql-blr1-new
-    db_name: defaultdb
-    db_user: doadmin
-    engine: PG
-    name: db-postgresql-blr1-new
-    production: true
-    version: "14"
-envs:
-  - key: NODE_ENV
-    scope: RUN_AND_BUILD_TIME
-    value: production
-  - key: DEBUG
-    scope: RUN_AND_BUILD_TIME
-    value: "0"
-  - key: WEATHER_API_KEY
-    scope: RUN_AND_BUILD_TIME
-    type: SECRET
-    value: "ascdsacwdf"
-  - key: NPM_CONFIG_PRODUCTION
-    scope: RUN_AND_BUILD_TIME
-    value: "false"
-  - key: TZ
-    scope: RUN_AND_BUILD_TIME
-    value: America/New_York
+  - rule: DOMAIN_FAILED
+egress:
+  type: DEDICATED_IP
 features:
   - buildpack-stack=ubuntu-22
+functions:
+  - github:
+      branch: main
+      deploy_on_push: true
+      repo: techswarn/phpfunc
+    name: phpfunc
+    source_dir: /
+  - envs:
+      - key: LOG_DESTINATIONS
+        scope: RUN_AND_BUILD_TIME
+        value: drHLy2QP2cE8PkT7GmMD3eSf
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: techswarn/debug-function
+    name: debug-function
+    source_dir: /
 ingress:
   rules:
     - component:
-        name: nodeproject
-      match:
-        path:
-          prefix: /nodeproject
-    - match:
-        path:
-          prefix: /search
-      redirect:
-        authority: google.com
-        redirect_code: 302
-        uri: /
-    - component:
-        name: mainapp
+        name: nodeproject2
       match:
         path:
           prefix: /
-name: seal-app
-region: sfo
+    - component:
+        name: phpfunc
+      match:
+        path:
+          prefix: /phpfunc
+    - component:
+        name: debug-function
+      match:
+        path:
+          prefix: /debug-function
+name: stingray-app
+region: sgp
 services:
   - environment_slug: node-js
+    envs:
+      - key: PORT
+        scope: RUN_AND_BUILD_TIME
+        value: "8000"
+      - key: NODE_ENV
+        scope: RUN_AND_BUILD_TIME
+        value: production
+      - key: DEBUG
+        scope: RUN_AND_BUILD_TIME
+        value: "0"
+      - key: DATABASE
+        scope: RUN_AND_BUILD_TIME
+        value: mongodb+srv://doadmin:<password>@app-db01-fe45a622.mongo.ondigitalocean.com/story?replicaSet=app-db01&tls=true&authSource=admin
+      - key: DATABASE_LOCAL
+        scope: RUN_AND_BUILD_TIME
+        value: mongodb://localhost:27017/natours
+      - key: DATABASE_PASSWORD
+        scope: RUN_AND_BUILD_TIME
+        value: S5l1e4nx0vK369G7
+      - key: JWT_SECRET
+        scope: RUN_AND_BUILD_TIME
+        value: efbchecnrywfbeunvywrub
+      - key: JWT_EXPIRE
+        scope: RUN_AND_BUILD_TIME
+        value: "90"
+      - key: WEATHER_API_KEY
+        scope: RUN_AND_BUILD_TIME
+        value: 1eef195e3a5c0820a311deedd4bba6a8
+      - key: NASA_API_KEY
+        scope: RUN_AND_BUILD_TIME
+        value: 40c5TVkeAztBVQGMySMrLyuxaA50vTbiUTXAoUkDx
+      - key: SPACES_ACCESS_KEY
+        scope: RUN_AND_BUILD_TIME
+        value: LGGBKK5XSC7YOQIVSADX
+      - key: SPACES_SECRET_KEY
+        scope: RUN_AND_BUILD_TIME
+        value: xVNypLLHqDGMt07nqoTOs4jK/DNCyg3jiuFQH2uXFQg
+      - key: SPACES_ENPOINT
+        scope: RUN_AND_BUILD_TIME
+        value: fra1.digitaloceanspaces.com
+      - key: DROPLET_PASSWORD
+        scope: RUN_AND_BUILD_TIME
+        value: SuCC12@dr0p01eSS
+      - key: PG_HOST
+        scope: RUN_AND_BUILD_TIME
+        value: db-postgresql-do-user-11648032-0.b.db.ondigitalocean.com
+      - key: PG_DATABASE
+        scope: RUN_AND_BUILD_TIME
+        value: store
+      - key: PG_PORT
+        scope: RUN_AND_BUILD_TIME
+        value: "25060"
+      - key: PG_USER
+        scope: RUN_AND_BUILD_TIME
+        value: admin
+      - key: PG_PASSWORD
+        scope: RUN_AND_BUILD_TIME
+        value: AVNS_qtiPtDvhYEzU0L2SfOb
+      - key: DB_URL_PG
+        scope: RUN_AND_BUILD_TIME
+        value: postgresql://doadmin:AVNS_4cDjFp0nC3bd4BpckQp@db-postgresql-blr1-new-do-user-11648032-0.b.db.ondigitalocean.com:25060/store?sslmode=no-verify
+      - key: MYSQL_HOST
+        scope: RUN_AND_BUILD_TIME
+        value: db-mysql-blr-do-user-11648032-0.b.db.ondigitalocean.com
+      - key: MYSQL_DATABASE
+        scope: RUN_AND_BUILD_TIME
+        value: brad-laravel
+      - key: MYSQL_PORT
+        scope: RUN_AND_BUILD_TIME
+        value: "25060"
+      - key: MYSQL_USER
+        scope: RUN_AND_BUILD_TIME
+        value: swarn
+      - key: MYSQL_PASSWORD
+        scope: RUN_AND_BUILD_TIME
+        value: AVNS_Ca8cvIzONVZgfSdNUwZ
+      - key: TZ
+        scope: RUN_AND_BUILD_TIME
+        value: Asia/Kolkata
+      - key: PG_HOST_POOL
+        scope: RUN_AND_BUILD_TIME
+        value: db-postgresql-blr1-new-do-user-11648032-0.b.db.ondigitalocean.com
+      - key: PG_DATABASE_POOL
+        scope: RUN_AND_BUILD_TIME
+        value: newpool
+      - key: PG_PORT_POOL
+        scope: RUN_AND_BUILD_TIME
+        value: "25061"
+      - key: PG_USER_POOL
+        scope: RUN_AND_BUILD_TIME
+        value: doadmin
+      - key: PG_PASSWORD_POOL
+        scope: RUN_AND_BUILD_TIME
+        value: AVNS_4cDjFp0nC3bd4BpckQp
+      - key: OPEN_AI
+        scope: RUN_AND_BUILD_TIME
+        value: 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
+      - key: FILE_PATH
+        scope: RUN_AND_BUILD_TIME
+        value: ./scripts/profile.jpg
+      - key: REDIS_HOST
+        scope: RUN_AND_BUILD_TIME
+        value: redis-10897.c212.ap-south-1-1.ec2.cloud.redislabs.com
+      - key: REDIS_PORT
+        scope: RUN_AND_BUILD_TIME
+        value: "10897"
+      - key: REDIS_PASSWORD
+        scope: RUN_AND_BUILD_TIME
+        value: 0Fn1pzzQDWO1oOAygGOeflWm3QyxYOKz
+      - key: REDIS_URL
+        scope: RUN_AND_BUILD_TIME
+        value: redis://default:0Fn1pzzQDWO1oOAygGOeflWm3QyxYOKz@redis-10897.c212.ap-south-1-1.ec2.cloud.redislabs.com:10897
+      - key: NPM_CONFIG_PRODUCTION
+        scope: RUN_AND_BUILD_TIME
+        value: "false"
     github:
       branch: main
       deploy_on_push: true
       repo: techswarn/NodeProject
-    http_port: 8080
-    instance_count: 1
-    instance_size_slug: professional-xs
-    log_destinations:
-      - name: app
-        papertrail:
-          endpoint: syslog+tls://logs5.papertrailapp.com:24536
-      - datadog:
-          api_key: 932be2c22e72e1a4e68cf46f9a0d43e9
-          endpoint: https://http-intake.logs.datadoghq.com/v1/input
-        name: logdatadog
-      - logtail:
-          token: rMRRTNXGPYJNr4XgUPL36Vxk
-        name: Logtail_nodeapp
-    name: nodeproject
-    run_command: npm run server
-    source_dir: /
-  - build_command: npm run build
-    environment_slug: node-js
-    envs:
-      - key: REACT_APP_REVIEWS_1_PHOTO_URL
-        scope: RUN_AND_BUILD_TIME
-        value: https://nursing.fra1.cdn.digitaloceanspaces.com/008-vidutinio-amziaus-moteris_mokymu-dalyve.jpg
-    github:
-      branch: main
-      deploy_on_push: true
-      repo: techswarn/mainapp
-    http_port: 8080
+    http_port: 8000
     instance_count: 2
-    instance_size_slug: professional-xs
-    name: mainapp
-    run_command: npm start
-    source_dir: /
-workers:
-  - dockerfile_path: Dockerfile
-    github:
-      branch: main
-      deploy_on_push: true
-      repo: techswarn/docker-cron
-    instance_count: 1
-    instance_size_slug: professional-xs
-    name: dockercron
+    instance_size_slug: apps-s-1vcpu-1gb
+    name: nodeproject2
+    run_command: npm run server
     source_dir: /
