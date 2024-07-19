@@ -8,7 +8,7 @@
     "server": "node index.js",
     "dev": "nodemon index.js",
     "test": "node -v",
-    "build:digitalocean": "npm install --production=false && npm ci"
+    "build:digitalocean": "NODE_ENV=development npm install && npm ci"
   },
   "engines": {
     "node": "20.11.0",
