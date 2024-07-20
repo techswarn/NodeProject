@@ -20,7 +20,6 @@ const checkEndpoint = async (req) => {
 
   try {
     response = await axios.get(url);
-    console.log(response);
   } catch (error) {
     console.error(error);
   }
