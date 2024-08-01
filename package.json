@@ -55,6 +55,7 @@
     "puppeteer": "^21.9.0",
     "razorpay": "^2.8.1",
     "redis": "^4.6.5",
+    "selenium-webdriver": "^4.23.0",
     "stripe": "^9.5.0",
     "validator": "^13.7.0",
     "yamljs": "^0.3.0"
