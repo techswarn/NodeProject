@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //Initialize mongodb connection here
-
+console.log("Database string: " + DB);
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
