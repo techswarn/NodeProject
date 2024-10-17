@@ -14,7 +14,7 @@ const dbpgcheck = require("./../scripts/dbpgcheck");
 const dbpgpool = require("./../scripts/dbpgpool");
 const dbmysqlcheck = require("./../scripts/dbmysqlcheck");
 const dbknexcheck = require("./../scripts/dbknexcheck");
-const dbSequelizeCheck = require("./../scripts/dbSequelizeCheck");
+const dbSequelizeCheck = require("./../scripts/dbmysqlSequelizeCheck.js");
 const checkEndpoint = require("./../scripts/checkEndpoint");
 const imageProcess = require("./../scripts/imageProcess");
 const checkRedisCon = require("./../scripts/dbredisCheck");
@@ -92,7 +92,7 @@ exports.dbknexcheck = catchAsync(async (req, res, next) => {
 
 exports.dbSquelizecheck = catchAsync(async (req, res, next) => {
   console.log("squelize run");
-  const data = await dbSequelizeCheck.dbSequelizeCheck();
+  const data = await dbSequelizeCheck.dbmysqlSequelizeCheck();
 
   res.status(200).json({
     message: data,

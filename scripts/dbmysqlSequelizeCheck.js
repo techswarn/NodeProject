@@ -3,12 +3,12 @@ const dotenv = require('dotenv')
 
 dotenv.config({path: './config.env'})
 
-const sequelize = new Sequelize(process.env.DB_URL_PG) 
+const sequelize = new Sequelize(process.env.DB_URL_MYSQL) 
 
-const dbSequelizeCheck = async () => {
+const dbmysqlSequelizeCheck = async () => {
 
     if(process.env.DEBUG) {
-        console.log("Hostname: " + process.env.DB_URL_PG)
+        console.log("URL: " + process.env.DB_URL_MYSQL)
     }
     
 
@@ -24,5 +24,5 @@ const dbSequelizeCheck = async () => {
     return "DB connection check"
 }
 
-exports.dbSequelizeCheck = dbSequelizeCheck
+exports.dbmysqlSequelizeCheck = dbmysqlSequelizeCheck
 
