@@ -7,7 +7,7 @@ const client = createClient({
   url: process.env.REDIS_URL,
   socket: {
    tls: true,
-   rejectUnauthorized: false,
+   rejectUnauthorized: true,
    cert: process.env.REDIS_CERT
  }
 });
@@ -25,6 +25,7 @@ const redisConnect = async () => {
 redisConnect();
 
 const addvalue = async (data) => {
+  data.value = 1
   await client.set("foo", data.value);
   const value = await client.get("foo");
   console.log(value);
