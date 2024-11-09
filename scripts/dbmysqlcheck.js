@@ -23,13 +23,13 @@ const connection = mysql.createConnection({
   },
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.log("Connection error: " + err);
-    failure = err;
-    return;
-  }
-});
+// connection.connect((err) => {
+//   if (err) {
+//     console.log("Connection error: " + err);
+//     failure = err;
+//     return;
+//   }
+// });
 
 // const mysqlDbConnect = async () => {
 //   let result;
@@ -49,10 +49,10 @@ connection.connect((err) => {
 
 const mysqlDbConnect = async () => {
   let result;
-  connection.query("select * from listings", function (error, results, fields) {
-    if (error) throw error;
-    result = results;
-  });
+  // connection.query("select * from listings", function (error, results, fields) {
+  //   if (error) throw error;
+  //   result = results;
+  // });
   return result;
 };
 
