@@ -32,9 +32,8 @@ const addvalue = async (data) => {
 };
 
 const checkRedis = async (data) => {
-  // const res = await addvalue(data);
-  // return res;
-  return "hello"
+  const res = await addvalue(data);
+  return res;
 };
 
 exports.checkRedis = checkRedis;
