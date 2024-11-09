@@ -41,23 +41,29 @@ console.log("TESTING THE APP");
 
 //Implement redis connection here
 
-// const redisConnect = async () => {
-//   try {
-//     await client.connect();
-//     console.log("Redis connection successfull ");
-//     await client.set("foo", "bar");
-//     const value = await client.get("foo");
-//     console.log(value); // returns 'bar'
-//   } catch (error) {
-//     console.log("Redis error:" + error);
-//   }
-// };
-// const client = createClient({
-//   url: process.env.REDIS_URL,
-// });
 
-// client.on("error", (err) => console.log("Redis Client Error: ", err));
-// redisConnect();
+const client = createClient({
+   url: process.env.REDIS_URL,
+   socket: {
+    tls: true,
+    rejectUnauthorized: false,
+    cert: process.env.REDIS_CERT
+  }
+});
+
+const redisConnect = async () => {
+  try {
+    await client.connect();
+    console.log("Redis connection successfull ");
+    await client.set("foo", "bar");
+    const value = await client.get("foo");
+    console.log(value); // returns 'bar'
+  } catch (error) {
+    console.log("Redis error:" + error);
+  }
+};
+
+redisConnect();
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on PORT :: ${process.env.PORT}`);
