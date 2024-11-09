@@ -5,7 +5,13 @@ dotenv.config({ path: "./config.env" });
 
 const client = createClient({
   url: process.env.REDIS_URL,
+  socket: {
+   tls: true,
+   rejectUnauthorized: false,
+   cert: process.env.REDIS_CERT
+ }
 });
+
 client.on("error", (err) => console.log("Redis Client Error", err));
 
 const redisConnect = async () => {
