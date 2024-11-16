@@ -10,7 +10,7 @@ const v8 = require("node:v8");
 //const cacheControlMiddleware = require('./middleware/cacheControlMiddleware')
 
 const app = express();
-app.use(cors());
+//app.use(cors());
 const memoryCheck = require("node:process");
 
 app.use((req, res, next) => {
